@@ -81,7 +81,7 @@ class WaterDetector:
         # ret,thresh = cv2.threshold(blurred, 127, 255, 0)
 
 
-        erode = cv2.erode(mask, kernel, iterations = 3)
+        erode = cv2.erode(mask, kernel, iterations = 7)
         dilation = cv2.dilate(erode, kernel[:5, :5], iterations = 1)
         blurred = cv2.GaussianBlur(dilation, (5,5), 0)
         ret, thresh = cv2.threshold(blurred, 127, 255, 0)

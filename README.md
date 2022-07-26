@@ -14,3 +14,10 @@
               False positives : 15 
               False negatives : 0
 3. See if better segmentation can be achieved either via collecting more data or any other color space. If not see what tuning in bounding box function gets best performance. 
+
+
+    ### Best performance till now
+   erode : kernel 7,7 iterations 7 
+   dilation : kernel 5,5 iterations 1
+   False negatives : 10 (although for the false negative next images have water detected in them)
+   False positives : 7
