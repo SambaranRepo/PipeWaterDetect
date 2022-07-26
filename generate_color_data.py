@@ -9,6 +9,8 @@ import pickle
 from glob import glob 
 from matplotlib import pyplot as plt
 from roipoly import RoiPoly, MultiRoi
+from tqdm import tqdm
+
 class GenerateData:
     '''
     class to generate different class data from samples
@@ -30,10 +32,10 @@ class GenerateData:
         files = os.listdir(folder)
 
         # for i in range(len(files)):
-        for i in range(5,15):
+        for i in tqdm(range(0,10)):
             file = files[i]
             img = cv2.imread(os.path.join(folder + file))
-            # img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            img = cv2.cvtColor(img, cv2.COLOR_RGB2YCrCb)
 
             fig,ax = plt.subplots()
             ax.imshow(img)
@@ -51,10 +53,10 @@ class GenerateData:
         return x_water, x_non_water
 
 if __name__ == '__main__':
-    folder = glob('WaterData/')[0]
+    folder = glob('NonWaterData/')[0]
     print(f'folder : {folder}')
     data_gen = GenerateData()
 
-    with open('WaterClassifier.pkl', 'ab') as f:
+    with open('WaterClassifierYCrCb.pkl', 'ab') as f:
         x_water, x_non_water = data_gen.generate_color_data(folder)
         pickle.dump([x_water, x_non_water], f)
