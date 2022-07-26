@@ -21,3 +21,17 @@
    dilation : kernel 5,5 iterations 1
    False negatives : 10 (although for the false negative next images have water detected in them)
    False positives : 7
+
+## Results
+
+### Performance in standing water pipe 
+ 
+<p align='center'>
+<img src="./water.gif">
+</p>
+
+### Performance in clear pipe 
+ 
+<p align='center'>
+<img src="./nonwater.gif">
+</p>
