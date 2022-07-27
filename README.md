@@ -27,11 +27,11 @@
 ### Performance in standing water pipe 
  
 <p align='center'>
-<img src="./water.gif">
+<img src="./gif/water.gif">
 </p>
 
 ### Performance in clear pipe 
  
 <p align='center'>
-<img src="./nonwater.gif">
+<img src="./gif/nonwater.gif">
 </p>
