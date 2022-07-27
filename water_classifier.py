@@ -10,7 +10,7 @@ from tqdm import tqdm
 
 import argparse
 parser = argparse.ArgumentParser()
-parser.add_argument('exp', help='enter whether you would like water detection or not')
+parser.add_argument('exp', help='enter whether you would like water detection or not  ---> \n Enter Water to test on water dataset \n Enter NonWater to test on non water dataset')
 args = parser.parse_args()
 experiment = args.exp
 

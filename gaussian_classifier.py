@@ -73,13 +73,13 @@ class GaussianClassifier:
 
 
 if __name__ == '__main__':
-    with open('WaterClassifierYCrCb.pkl', 'rb') as f:
+    with open('WaterClassifierLab.pkl', 'rb') as f:
         x = pickle.load(f)
         x_water, x_non_water = x[0], x[1]
 
     water_classifier = GaussianClassifier(x_water, x_non_water)
     params = water_classifier.gaussian_classifier()
 
-    with open('water_classifier_model_ycrcb.pkl', 'wb') as f:
+    with open('water_classifier_model_lab.pkl', 'wb') as f:
         pickle.dump(params, f)
         

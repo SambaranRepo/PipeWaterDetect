@@ -35,7 +35,7 @@ class GenerateData:
         for i in tqdm(range(0,10)):
             file = files[i]
             img = cv2.imread(os.path.join(folder + file))
-            img = cv2.cvtColor(img, cv2.COLOR_RGB2YCrCb)
+            img = cv2.cvtColor(img, cv2.COLOR_RGB2Lab)
 
             fig,ax = plt.subplots()
             ax.imshow(img)
@@ -53,10 +53,10 @@ class GenerateData:
         return x_water, x_non_water
 
 if __name__ == '__main__':
-    folder = glob('NonWaterData/')[0]
+    folder = glob('WaterData/')[0]
     print(f'folder : {folder}')
     data_gen = GenerateData()
 
-    with open('WaterClassifierYCrCb.pkl', 'ab') as f:
+    with open('WaterClassifierLab.pkl', 'ab') as f:
         x_water, x_non_water = data_gen.generate_color_data(folder)
         pickle.dump([x_water, x_non_water], f)
