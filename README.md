@@ -1,7 +1,7 @@
 # PipeWaterDetect
 This script is used to detect standing water in from images collected inside pipelines using the pipeline inspection robot. 
 This method comprises of three steps : 
-1. Using a <pre>roipoly</pre> tool, we select a region of pixels first belonging to the water class and second belonging to the non water class. This step is done over the collection of images and comprises of our training data to train the classifiers. The collected pixels are saved into a pickle file for further use.
+1. Using a ```roipoly``` tool, we select a region of pixels first belonging to the water class and second belonging to the non water class. This step is done over the collection of images and comprises of our training data to train the classifiers. The collected pixels are saved into a pickle file for further use.
 2. Using the pixel data collected for the water and non water classes, we train a gaussian classifier for each class and save the distribution parameters in a pickle file for further use. 
 3. Now given a pipeline image, the image is first segmented into a binary mask image according to our gaussian classifiers for the water and non water class. Given the segmneted image, we then make use of cv2 contour methods and some shape statistics to filter out regions that possibly indicate water region. 
 
@@ -19,13 +19,13 @@ The same image will open again, repeat the same process above but this time for 
 Finally, the pixels are saved into a pickle file. Pickle files are named according to the color space we selected the pixels in. For ex : ```WaterClassifier.pkl```, ```WaterClassifierYCrCb.pkl``` or ```WaterClassifierHSV.pkl```
 
 Usage : 
-```python3 generate_color_data.py```
+<pre>python3 generate_color_data.py</pre>
 
 ## Training the gaussian classifier using the pixels in the desired color space
 After we have collected the pixels for the water and non water classes in a desired color space, we can load these pixels from the pickle file, and then we train a gaussian classifier for each of the water and non water pixels. The distribution parameters are then saved into another pickle file with naming according to the color space the pixels, such as ```water_classifier_model_ycrcb.pkl``` or ```water_classifier_hsv.pkl```
 
 Usage : 
-```python3 gaussian_classifier.py```
+<pre>python3 gaussian_classifier.py</pre>
 
 ## Using the classifier to segment the image and detecting standing water
 Afer we have the trained gaussian classifier, given an image of the pipe, we segment the image into water like pixels and non water like pixels. Water like pixels are colored white and non water like pixels are colored black. The ```WaterDetector``` class contains the function ```segment_image``` that takes as input the original image and does this segmentation. All we have to do is load the desired gaussian classifier model parameters and correspondingly change the color space of the image. For ex, if we load the gaussian parameters that were trained in YCrCb color space, change line 30 to read ```with open('water_classifier_model_ycrcb.pkl' ,'rb') as f:``` and change line 43 to read ```img = cv2.cvtColor(img, cv2.COLOR_RGB2YCrCb)``` and similar for other color spaces. 
@@ -35,12 +35,12 @@ Based on the segmentation masks, we use cv2 contour functions and some shape sta
 To use this script, we need to give an extra argument : Provide arg ```Water``` to deploy the algorithm on the images containing water which loads images from ```WaterData``` directory, or ```NonWater``` which loads images from ```NonWaterData``` directory. 
 
 Usage : 
-```python3 water_classifier.py Water```
+<pre>python3 water_classifier.py Water</pre>
 or 
-```python3 water_classifier.py NonWater```
+<pre>python3 water_classifier.py NonWater</pre>
 
 ## Testing 
-In line 
+Just run the script ```water_classifier.py``` with the arguments shown above. 
 
 ## ToDo (25th July, 2022): 
 1. Train gaussian classifier with more data 
